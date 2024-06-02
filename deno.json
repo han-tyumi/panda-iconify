@@ -1,0 +1,6 @@
+{
+  "tasks": {
+    "trunk": "deno run -A npm:@trunkio/launcher@1.3.1/trunk",
+    "dev": "deno run --watch main.ts"
+  }
+}
