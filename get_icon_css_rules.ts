@@ -6,9 +6,7 @@ import {
   type IconifyIcon,
 } from "./deps.ts";
 
-export function getIconCSSRules(
-  icon: IconifyIcon,
-): Record<string, string> {
+export function getIconCSSRules(icon: IconifyIcon): Record<string, string> {
   const options: IconCSSCommonCodeOptions = {
     mode: "mask",
     varName: "svg",

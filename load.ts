@@ -25,8 +25,6 @@ export async function loadIconSet(name: string): Promise<IconifyJSONIconsData> {
   );
 }
 
-export function loadIconSets(
-  names: string[],
-): Promise<IconifyJSONIconsData[]> {
+export function loadIconSets(names: string[]): Promise<IconifyJSONIconsData[]> {
   return Promise.all(names.map(loadIconSet));
 }
