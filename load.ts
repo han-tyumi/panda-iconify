@@ -1,24 +1,20 @@
-import { createRequire, IconifyJSONIconsData } from "./deps.ts";
+import { IconifyJSONIconsData } from "./deps.ts";
 
-const _require = createRequire(import.meta.url);
-
-function importJSON<T>(id: string): T {
-  const path = _require.resolve(id);
-  const json = Deno.readTextFileSync(path);
-  return JSON.parse(json);
+async function importJSON<T>(id: string): Promise<T> {
+  return (await import(id, { with: { type: "json" } })).default;
 }
 
-export function loadIconSet(name: string): IconifyJSONIconsData {
+export async function loadIconSet(name: string): Promise<IconifyJSONIconsData> {
   const errors = [];
 
   try {
-    return importJSON(`@iconify-json/${name}/icons.json`);
+    return await importJSON(`@iconify-json/${name}/icons.json`);
   } catch (error) {
     errors.push(error);
   }
 
   try {
-    return importJSON(`@iconify/json/json/${name}.json`);
+    return await importJSON(`@iconify/json/json/${name}.json`);
   } catch (error) {
     errors.push(error);
   }
@@ -28,6 +24,6 @@ export function loadIconSet(name: string): IconifyJSONIconsData {
   );
 }
 
-export function loadIconSets(names: string[]): IconifyJSONIconsData[] {
-  return names.map(loadIconSet);
+export function loadIconSets(names: string[]): Promise<IconifyJSONIconsData[]> {
+  return Promise.all(names.map(loadIconSet));
 }

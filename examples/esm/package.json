@@ -1,0 +1,7 @@
+{
+  "type": "module",
+  "devDependencies": {
+    "@pandacss/dev": "^0.40.1",
+    "panda-iconify": "link:../../npm"
+  }
+}

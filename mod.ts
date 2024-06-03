@@ -51,6 +51,3 @@ export default async function createPreset(options: Options): Promise<Preset> {
     },
   });
 }
-
-// const preset = await createPreset({ sets: ['fa6-solid', 'mdi'] })
-// console.log(Object.keys(preset.theme?.extend?.recipes ?? {}))

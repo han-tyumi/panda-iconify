@@ -1,5 +1,7 @@
 {
   "deno.enable": true,
+  "deno.disablePaths": ["examples"],
+
   "editor.defaultFormatter": "trunk.io",
   "editor.formatOnSave": true
 }

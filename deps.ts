@@ -1,5 +1,3 @@
-export { createRequire } from "node:module";
-
 export type {
   IconifyIcon,
   IconifyJSONIconsData,

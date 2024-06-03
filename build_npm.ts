@@ -4,16 +4,14 @@ const outDir = "./npm";
 
 await emptyDir(outDir);
 
-// TODO: Unsure why exactly this existing causes issue with the build.
-await emptyDir("./node_modules");
-
 await build({
   entryPoints: ["./mod.ts"],
   outDir,
+  scriptModule: false,
+  testPattern: "*_test.ts",
   shims: {
     deno: true,
   },
-  typeCheck: "both",
   package: {
     name: "panda-iconify",
     version: Deno.args[0],
@@ -31,3 +29,16 @@ await build({
 
 Deno.copyFileSync("LICENSE.txt", `${outDir}/LICENSE.txt`);
 Deno.copyFileSync("README.md", `${outDir}/README.md`);
+
+async function testExample(name: string) {
+  console.log(`\nVerifying 'panda codegen' works for ${name} example...`);
+  const cmd = new Deno.Command("pnpm", {
+    args: ["panda", "codegen", "--clean"],
+    cwd: `examples/${name}`,
+    stdout: "inherit",
+    stderr: "inherit",
+  });
+  await cmd.output();
+}
+
+await testExample("esm");

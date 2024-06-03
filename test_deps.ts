@@ -3,6 +3,6 @@ import "npm:@iconify-json/fa6-solid@^1.1.21";
 
 export {
   assertEquals,
+  assertRejects,
   assertStrictEquals,
-  assertThrows,
 } from "jsr:@std/assert@^0.225.3";
