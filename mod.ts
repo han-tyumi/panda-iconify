@@ -16,7 +16,7 @@ export interface Options {
    * These must be made available through `@iconify/json`
    * or individual icon set packages (e.g., `@iconify-json/mdi`).
    */
-  prefixes: string[];
+  iconSets: string[];
 
   /**
    * Controls which recipes are defined.
@@ -64,12 +64,11 @@ export interface Options {
   };
 }
 
-export default async function createPreset(
-  { prefixes, define = { icon: true } }: Options,
-): Promise<Preset> {
-  const iconSets = await loadIconSets(prefixes);
+export default async function createPreset(options: Options): Promise<Preset> {
+  const iconSets = await loadIconSets(options.iconSets);
 
   const recipes: Record<string, Partial<RecipeConfig>> = {};
+  const define = options.define ?? { icon: true };
 
   if (define.icon) {
     recipes.icon = {

@@ -11,7 +11,7 @@ export default defineConfig({
   // Files to exclude
   exclude: [],
 
-  presets: [pandaIconify({ sets: ["fa6-solid", "fa6-brands", "mdi"] })],
+  presets: [pandaIconify({ iconSets: ["fa6-solid", "fa6-brands", "mdi"] })],
 
   // Useful for theme customization
   theme: {
