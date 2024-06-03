@@ -26,7 +26,7 @@ export interface Options {
    * { icon: true }
    * ```
    */
-  define?: {
+  recipes?: {
     /**
      * Defines an `icon` recipe where the `name` property takes a string
      * containing the icon prefix and name separated by a `:`.
@@ -68,7 +68,7 @@ export default async function createPreset(options: Options): Promise<Preset> {
   const iconSets = await loadIconSets(options.iconSets);
 
   const recipes: Record<string, Partial<RecipeConfig>> = {};
-  const define = options.define ?? { icon: true };
+  const define = options.recipes ?? { icon: true };
 
   if (define.icon) {
     recipes.icon = {
