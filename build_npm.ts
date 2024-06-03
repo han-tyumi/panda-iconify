@@ -12,6 +12,13 @@ await build({
   shims: {
     deno: true,
   },
+  mappings: {
+    "npm:@pandacss/dev@^0.40.1": {
+      name: "@pandacss/dev",
+      version: "^0.40.1",
+      peerDependency: true,
+    },
+  },
   package: {
     name: "panda-iconify",
     version: Deno.args[0],
