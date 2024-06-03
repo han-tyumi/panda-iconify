@@ -3,6 +3,8 @@ export type {
   IconifyJSONIconsData,
 } from "npm:@iconify/types@^2.0.0";
 
+export { camelize, pascalize } from "npm:@iconify/utils@^2.1.24";
+
 export {
   generateItemCSSRules,
   getCommonCSSRules,

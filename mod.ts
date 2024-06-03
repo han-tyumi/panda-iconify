@@ -1,5 +1,7 @@
 import {
+  camelize,
   definePreset,
+  pascalize,
   type Preset,
   type RecipeConfig,
   type SystemStyleObject,
@@ -23,7 +25,9 @@ export default async function createPreset(options: Options): Promise<Preset> {
   };
 
   for (const set of iconSets) {
-    recipes[set.prefix] = {
+    const camelizedPrefix = camelize(set.prefix);
+
+    recipes[camelizedPrefix] = {
       variants: {
         name: {},
       },
@@ -32,12 +36,11 @@ export default async function createPreset(options: Options): Promise<Preset> {
     for (const [name, icon] of Object.entries(set.icons)) {
       const systemStyleObject = getIconCSSRules(icon) as SystemStyleObject;
 
-      // TODO: Support prefixes?
-      recipes[set.prefix + "-" + name] = {
+      recipes[camelizedPrefix + pascalize(name)] = {
         base: systemStyleObject,
       };
 
-      recipes[set.prefix].variants!.name[name] = systemStyleObject;
+      recipes[camelizedPrefix].variants!.name[name] = systemStyleObject;
 
       recipes.icon.variants!.name[set.prefix + ":" + name] = systemStyleObject;
     }
