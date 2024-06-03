@@ -1,30 +1,33 @@
-import type { IconifyJSONIconsData } from "./deps.ts";
+import { createRequire, IconifyJSONIconsData } from "./deps.ts";
 
-async function importJSON(path: string) {
-  return (await import(path, { with: { type: "json" } })).default;
+const _require = createRequire(import.meta.url);
+
+function importJSON<T>(id: string): T {
+  const path = _require.resolve(id);
+  const json = Deno.readTextFileSync(path);
+  return JSON.parse(json);
 }
 
-export async function loadIconSet(name: string): Promise<IconifyJSONIconsData> {
+export function loadIconSet(name: string): IconifyJSONIconsData {
   const errors = [];
 
   try {
-    return await importJSON(`@iconify-json/${name}/icons.json`);
+    return importJSON(`@iconify-json/${name}/icons.json`);
   } catch (error) {
     errors.push(error);
   }
 
   try {
-    return await importJSON(`@iconify/json/json/${name}.json`);
+    return importJSON(`@iconify/json/json/${name}.json`);
   } catch (error) {
     errors.push(error);
   }
 
   throw new Error(
     `Could not find '${name}' icon set\n` + errors.map(String).join("\n"),
-    { cause: errors },
   );
 }
 
-export function loadIconSets(names: string[]): Promise<IconifyJSONIconsData[]> {
-  return Promise.all(names.map(loadIconSet));
+export function loadIconSets(names: string[]): IconifyJSONIconsData[] {
+  return names.map(loadIconSet);
 }

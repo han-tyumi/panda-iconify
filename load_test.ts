@@ -1,8 +1,4 @@
-import {
-  assertEquals,
-  assertRejects,
-  assertStrictEquals,
-} from "./deps_test.ts";
+import { assertEquals, assertStrictEquals, assertThrows } from "./test_deps.ts";
 
 import { loadIconSet, loadIconSets } from "./load.ts";
 
@@ -14,7 +10,7 @@ Deno.test("loads an icon set", async () => {
 
 Deno.test("throws an error when an icon set is not found", async () => {
   const name = "unknown";
-  await assertRejects(() => loadIconSet(name), name);
+  await assertThrows(() => loadIconSet(name), name);
 });
 
 Deno.test("loads multiple icon sets", async () => {
