@@ -44,8 +44,8 @@
     "@pandacss/dev": "^0.40.1"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.20.0",
-    "@iconify/json": "^2.2.216",
+    "@antfu/eslint-config": "^2.21.0",
+    "@iconify/json": "^2.2.217",
     "@iconify/types": "^2.0.0",
     "@iconify/utils": "^2.1.24",
     "@tsconfig/node20": "^20.1.4",
