@@ -34,6 +34,7 @@ export interface Options {
      * @example
      * ```js
      * import { icon } from '~/styled-system/recipes'
+     *
      * icon({ name: 'fa6-solid:address-book' })
      * ```
      */
@@ -46,6 +47,7 @@ export interface Options {
      * @example
      * ```js
      * import { fa6Solid } from '~/styled-system/recipes'
+     *
      * fa6Solid({ name: 'address-book' })
      * ```
      */
@@ -57,6 +59,7 @@ export interface Options {
      * @example
      * ```js
      * import { fa6SolidAddressBook } from '~/styled-system/recipes'
+     *
      * fa6SolidAddressBook()
      * ```
      */
