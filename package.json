@@ -1,0 +1,52 @@
+{
+  "name": "panda-iconify",
+  "type": "module",
+  "version": "0.6.0",
+  "packageManager": "pnpm@9.2.0",
+  "description": "Iconify preset for Panda CSS",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/han-tyumi/panda-iconify.git"
+  },
+  "bugs": {
+    "url": "https://github.com/han-tyumi/panda-iconify/issues"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "engines": {
+    "node": "^18.0.0 || >=20.0.0"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch --no-dts",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "test": "vitest"
+  },
+  "peerDependencies": {
+    "@pandacss/dev": "^0.40.1"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^2.20.0",
+    "@changesets/cli": "^2.27.5",
+    "@iconify/json": "^2.2.216",
+    "@iconify/types": "^2.0.0",
+    "@iconify/utils": "^2.1.24",
+    "@tsconfig/node20": "^20.1.4",
+    "@types/node": "^20.14.2",
+    "eslint": "^9.4.0",
+    "eslint-plugin-format": "^0.1.1",
+    "tsup": "^8.1.0",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
+  }
+}

@@ -1,9 +1,0 @@
-{
-  "exclude": ["npm/"],
-  "nodeModulesDir": true,
-  "tasks": {
-    "build_npm": "deno run -A build_npm.ts",
-    "publish": "cd npm && npm publish",
-    "trunk": "deno run -A npm:@trunkio/launcher@^1.3.1/trunk"
-  }
-}
