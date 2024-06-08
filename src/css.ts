@@ -1,16 +1,16 @@
+import type { IconifyIcon } from '@iconify/types'
+import type { IconCSSCommonCodeOptions } from '@iconify/utils/lib/css/types'
 import {
-  defaultIconProps,
   generateItemCSSRules,
   getCommonCSSRules,
-  type IconCSSCommonCodeOptions,
-  type IconifyIcon,
-} from "./deps.ts";
+} from '@iconify/utils/lib/css/common'
+import { defaultIconProps } from '@iconify/utils/lib/icon/defaults'
 
 export function getIconCSSRules(icon: IconifyIcon): Record<string, string> {
   const options: IconCSSCommonCodeOptions = {
-    mode: "mask",
-    varName: "svg",
-  };
+    mode: 'mask',
+    varName: 'svg',
+  }
 
   return {
     ...getCommonCSSRules(options),
@@ -22,5 +22,5 @@ export function getIconCSSRules(icon: IconifyIcon): Record<string, string> {
       },
       options,
     ),
-  };
+  }
 }

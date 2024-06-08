@@ -1,13 +1,13 @@
 import {
-  camelize,
-  definePreset,
-  pascalize,
   type Preset,
   type RecipeConfig,
   type SystemStyleObject,
-} from "./deps.ts";
-import { getIconCSSRules } from "./get_icon_css_rules.ts";
-import { loadIconSets } from "./load.ts";
+  definePreset,
+} from '@pandacss/dev'
+import { camelize, pascalize } from '@iconify/utils'
+
+import { getIconCSSRules } from './css.js'
+import { loadIconSets } from './load.js'
 
 export interface Options {
   /**
@@ -16,7 +16,7 @@ export interface Options {
    * These must be made available through `@iconify/json`
    * or individual icon set packages (e.g., `@iconify-json/mdi`).
    */
-  iconSets: string[];
+  iconSets: string[]
 
   /**
    * Controls which recipes are defined.
@@ -37,7 +37,7 @@ export interface Options {
      * icon({ name: 'fa6-solid:address-book' })
      * ```
      */
-    icon?: boolean;
+    icon?: boolean
 
     /**
      * Defines a recipe for each prefix.
@@ -49,7 +49,7 @@ export interface Options {
      * fa6Solid({ name: 'address-book' })
      * ```
      */
-    prefix?: boolean;
+    prefix?: boolean
 
     /**
      * Defines a recipe for each icon using its prefix followed by its name.
@@ -60,51 +60,50 @@ export interface Options {
      * fa6SolidAddressBook()
      * ```
      */
-    prefixAndName?: boolean;
-  };
+    prefixAndName?: boolean
+  }
 }
 
 export default async function createPreset(options: Options): Promise<Preset> {
-  const iconSets = await loadIconSets(options.iconSets);
+  const iconSets = await loadIconSets(options.iconSets)
 
-  const recipes: Record<string, Partial<RecipeConfig>> = {};
-  const define = options.recipes ?? { icon: true };
+  const recipes: Record<string, Partial<RecipeConfig>> = {}
+  const define = options.recipes ?? { icon: true }
 
   if (define.icon) {
     recipes.icon = {
       variants: {
         name: {},
       },
-    };
+    }
   }
 
   for (const set of iconSets) {
-    const camelizedPrefix = camelize(set.prefix);
+    const camelizedPrefix = camelize(set.prefix)
 
     if (define.prefix) {
       recipes[camelizedPrefix] = {
         variants: {
           name: {},
         },
-      };
+      }
     }
 
     for (const [name, icon] of Object.entries(set.icons)) {
-      const systemStyleObject = getIconCSSRules(icon) as SystemStyleObject;
+      const systemStyleObject = getIconCSSRules(icon) as SystemStyleObject
 
       if (define.prefixAndName) {
         recipes[camelizedPrefix + pascalize(name)] = {
           base: systemStyleObject,
-        };
+        }
       }
 
       if (define.prefix) {
-        recipes[camelizedPrefix].variants!.name[name] = systemStyleObject;
+        recipes[camelizedPrefix].variants!.name[name] = systemStyleObject
       }
 
       if (define.icon) {
-        recipes.icon.variants!.name[set.prefix + ":" + name] =
-          systemStyleObject;
+        recipes.icon.variants!.name[`${set.prefix}:${name}`] = systemStyleObject
       }
     }
   }
@@ -115,5 +114,5 @@ export default async function createPreset(options: Options): Promise<Preset> {
         recipes,
       },
     },
-  });
+  })
 }
