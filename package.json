@@ -1,7 +1,7 @@
 {
   "name": "panda-iconify",
   "type": "module",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "packageManager": "pnpm@9.2.0",
   "description": "Iconify preset for Panda CSS",
   "license": "MIT",
