@@ -1,7 +1,7 @@
 {
   "type": "commonjs",
   "devDependencies": {
-    "@pandacss/dev": "^0.40.1",
+    "@pandacss/dev": "latest",
     "panda-iconify": "link:../../"
   }
 }
