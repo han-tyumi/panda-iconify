@@ -1,7 +1,4 @@
 {
-  // Not needed if your ESLint extension is above v3.0.5.
-  "eslint.experimental.useFlatConfig": true,
-
   // Disable typical formatting.
   "editor.formatOnSave": false,
 
