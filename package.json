@@ -41,7 +41,7 @@
     "test": "vitest"
   },
   "peerDependencies": {
-    "@pandacss/dev": "^0.40.1"
+    "@pandacss/dev": ">=0.9.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.21.0",
