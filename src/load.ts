@@ -13,14 +13,14 @@ export async function loadIconSet(
   const errors = []
 
   try {
-    return await importJSON(`@iconify-json/${prefix}/icons.json`)
+    return await importJSON(`@iconify/json/json/${prefix}.json`)
   }
   catch (error) {
     errors.push(error)
   }
 
   try {
-    return await importJSON(`@iconify/json/json/${prefix}.json`)
+    return await importJSON(`@iconify-json/${prefix}/icons.json`)
   }
   catch (error) {
     errors.push(error)
